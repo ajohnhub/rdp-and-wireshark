@@ -1,107 +1,68 @@
 ![image](https://user-images.githubusercontent.com/109401839/230745596-57cee9bd-687c-427d-b0db-d1080df77f7e.png)
 
 
-<h1>osTicket - Prerequisites and Installation</h1>
-This tutorial outlines the prerequisites and installation of the open-source help desk ticketing system osTicket.<br />
+<h1>Remote Desktop & Wireshark</h1>
+This walkthrough demonstrates how to use Remote Desktop within Windows and Linux Virtual Machines. I will also be demonstrating how to use Wireshark, an open-source network protocol analyzer used for capturing and analyzing network traffic within these VM's.
+</br>
 
 
 <h2>Environments and Technologies Used</h2>
 
 - Microsoft Azure (Virtual Machines/Compute)
 - Remote Desktop
-- Internet Information Services (IIS)
+- Wireshark
 
-<h2>Operating Systems Used </h2>
+<h2>Operating Systems Used </h2> 
 
-- Windows 10</b> (21H2)
+- Windows 10 (22H2)
+- Linux
 
-<h2>List of Prerequisites</h2>
-
-- Azure Virtual Machine
-- osTicket Installation files
-- Heidi SQL
-
-<h2>Installation Steps</h2>
+<h2>Walkthrough Steps</h2>
 
 <p>
+Log in to your Windows VM by connecting to Remote Desktop on your computer with your Windows VM's Public IP Address. 
+
+<img src="https://github.com/user-attachments/assets/5bcf72e0-8bec-4d51-b67e-2bc4417b1674" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
-<p>
-Create a resource group and title it "osTicket". Afterwards create a VM with 2-4 CPUs. In this example I will be using 4 CPUs.
+</br>
+
+<p> 
+Once logged in, go to www.wireshark.org & download Wireshark for your device.
+<img src="https://github.com/user-attachments/assets/5e8ccb00-7796-4a62-bbff-f4d4247fd7a4" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/user-attachments/assets/ff3f7af4-01e3-4abf-ae95-98352738d97c" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+</p>
+</br>
+
+<p>Open Wireshark and click the blue shark fin in the top left corner to begin packet capture.
+
+<img src="https://github.com/user-attachments/assets/4a7e35b5-71ad-4d74-b8ba-7c1c6df16505" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/user-attachments/assets/e3f5d014-6458-4928-9b9c-97b8d14ce2b5" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+</p>
+</br>
+
+<p> You can filter for specific traffic by using the search bar. (Ex: icmp)
+
+<img src="https://github.com/user-attachments/assets/489c77bc-8fc9-4732-9e9c-8ac801a12ad7" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+
+</p>
+</br>
+
+
+<p>Retrieve the private IP address of the Ubuntu VM (linux-vm) and attempt to ping it from within the Windows 10 VM.
+
+<img src="https://github.com/user-attachments/assets/60395029-4baa-4b60-a20f-7a04229f77c6" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+</br>
+
+<p> Observe ping requests and replies within Wireshark.
+
+<img src="https://github.com/user-attachments/assets/7f1bf292-666e-48b7-83fa-1a304672b964" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
   
- <img src="https://i.imgur.com/OPaIGoN.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-<br />
-<p>
-</p>
-<p>Next simply connect to your newly created VM using RDP using the public IPv4 address. If you are a Mac user you will have to download Microsoft RDP. 
-</p>
-<img src="https://i.imgur.com/uLVKzxS.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<br />
-
-<p>
-</p>
-<p>
-Alright, now that you are connected to your VM you will have to enable IIS. Simply access the control panel then select uninstall a program. Off to the left select "Turn windows features on or off". A list will appear then you will enable Internet Information Services.
-</p>  
-<img src="https://i.imgur.com/qtEnuWu.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<br />
-</p>
-<p>
-Excellent. Now that you have enabled IIS we need to install Web Platform Installer. I have provided a link here: https://drive.google.com/drive/u/0/folders/1APMfNyfNzcxZC6EzdaNfdZsUwxWYChf6
-  That link will provide you with all of the material you need to download to get osTicket up and running. Simply click the link and install the Web Platform Installer
-</p>
-<img src="https://i.imgur.com/AxHCfQ6.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>  
-</p>
-<p>
-Once you have installed Web Installer Platform open it. From inside the application you are going to install MySQL 5.5 Afterwards install x86 version of PHP up until 7.3. There are some failed files such as C++ redistributable package as well as PHP 7.3.8 and PHP Manager for IIS those files can be found with the install link.
-</p>
-<img src="https://i.imgur.com/JJ8bZeJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<p>
-</p>
-<p>
-Next download osTicket. Then extract and copy the "upload" folder into c:\inetpub\wwwroot. Afterwards rename the folder to osTicket
-</P>
-<img src="https://i.imgur.com/TUGiSKi.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<br />
-<p>
-</p>
-<p>
-Open IIS Manager and restart the server. Once inside IIS manager go to Sites->Default->osTicket on the right, click "Browse*.80" from there your default browser should open osTicket webserver.
-</p>
-<img src="https://i.imgur.com/4AkTkV0.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<p>
-</p>
-<p>
-Go back into IIS manager and enable some extensions. To do this you have to go to Sites->Default->osTicket
-Then double click on PHP manager. Click on "Disable or enable an extension" Enable "php_intl.dll" & "php_opcache.dll" then refresh the osTicket webserver and obsereve the changes "Intl Extension" should now be enabled. 
-</p>
-<img src="https://i.imgur.com/APZgUTT.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<p>
-</p>
-<p>
-Go back into c:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php rename the file to c:\inetpub\wwwroot\osTicket\include\ost-config.php
-Assign permissions to ost-config.php Disable inheritance->Removeall
-New Permissions->Everyone->all
-</p>
-<img src="https://i.imgur.com/1nYaYGe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<p>
-</p>
-<p>
-Afterwards continue setting up osTicket in the browser (click continue) then you will name the Helpdesk to your liking. Select a default email that will receive emails from customers who submit tickets. 
-</p>
-<img src="https://i.imgur.com/RmVk3q5.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<p>
-<p>Continue Setting up osticket in the browser MySQL Database: osTicket MySQL Username: root MySQL Password: Password1 Click “Install Now!”
-Congratulations, hopefully it is installed with no errors!
-Clean up
-Delete: C:\inetpub\wwwroot\osTicket\setup
-Set Permissions to “Read” only: C:\inetpub\wwwroot\osTicket\include\ost-config.php
-Login to the osTicket Admin Panel (http://localhost/osTicket/scp/login.php)
+</br>
 

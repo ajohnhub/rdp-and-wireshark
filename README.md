@@ -20,7 +20,7 @@ This walkthrough demonstrates how to use Remote Desktop within Windows and Linux
 <h2>Walkthrough Steps</h2>
 
 <p>
-Log in to your Windows VM by connecting to Remote Desktop on your computer with your Windows VM's Public IP Address. 
+Log in to your Windows 10 VM by connecting to RDP on your computer with your Windows 10 VM public IP address. 
 
 <img src="https://github.com/user-attachments/assets/5bcf72e0-8bec-4d51-b67e-2bc4417b1674" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 

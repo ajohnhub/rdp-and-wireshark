@@ -11,6 +11,7 @@ This walkthrough demonstrates how to use Remote Desktop within Windows and Linux
 - Microsoft Azure (Virtual Machines/Compute)
 - Remote Desktop
 - Wireshark
+- Powershell
 
 <h2>Operating Systems Used </h2> 
 
